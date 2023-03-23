@@ -14,7 +14,7 @@ function Home() {
     <main className="column">
       <h1><center>SafeTravels</center></h1>
       <center><LoginButton /></center>
-
+ 
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
 

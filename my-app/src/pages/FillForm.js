@@ -1,5 +1,6 @@
 import './Home.css';
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css'
@@ -82,9 +83,12 @@ function FillForm() {
                         </label>
                     </div>
                 </div>
+
+                <Link to="/GroupPage">            
                 <button>
                     <label type="enter" onClick={saveData}>Submit</label>
                 </button>
+                </Link>
             </form>
         </div>
   )

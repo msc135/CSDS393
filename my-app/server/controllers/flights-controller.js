@@ -1,4 +1,4 @@
-
+let loggedIn = "";
 
 const knex = require('knex')({
   client: 'sqlite3',
@@ -24,6 +24,12 @@ exports.flightsAll = async (req, res) => {
     })
 }
 
+exports.flightsRecieveEmail = async (req, res) => {
+  loggedIn = req.body.email;
+}
+
+
+//create new route so we can reference it in thr controller
 exports.flightsPersonal = async (req, res) => {
   // Get all books from database
   knex
@@ -63,3 +69,4 @@ exports.flightCreate = async (req, res) => {
         res.json({ message: `There was an error creating ${req.body.email} flight: ${err}` })
       })
   }
+

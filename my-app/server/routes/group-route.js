@@ -1,9 +1,8 @@
-// bookshelf-app/server/routes/books-route.js
-// Import express
+
 const express = require('express')
 
 // Import login-controller
-const loginRoutes = require('./../controllers/login-controller.js')
+const groupRoutes = require('./../controllers/group-controller.js')
 
 // Create router
 const router = express.Router()
@@ -16,7 +15,8 @@ const router = express.Router()
 // Add route for POST request to create new account
 // In server.js, login route is specified as '/login'
 // this means that '/create' translates to '/login/create'
-router.post('/create', loginRoutes.loginCreate)
+router.get('/all', groupRoutes.groupAll)
+//router.post('/create', groupRoutes.groupCreate)
 
 // Export router
 module.exports = router
