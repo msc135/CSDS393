@@ -1,10 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios'
 import React, { useState } from "react";
+import classNames from "classnames";
+import "../pages/Home.css";
 
 function Profile () {
     const { user, isAuthenticated } = useAuth0();
     let [listOfItems, setListOfItems] = useState([]);
+    let [background, setBackground] = useState(false);
 
     const createAccount = async (e) => {
         try {
@@ -54,6 +57,15 @@ function Profile () {
             });
     }
 
+    const changeBackground = async(e) => {
+        setBackground(!background);
+    }
+
+    const conditionalStyles = classNames("App", {
+        "bkg-dark": background,
+        "bkg-light": !background
+    })
+
     if (isAuthenticated){
         window.localStorage.setItem("currUser", user.email);
         window.localStorage.setItem("currFlights", getUsersFlights());
@@ -63,9 +75,10 @@ function Profile () {
 
     return (
         isAuthenticated && (
-            <article className="column">
+            <article className={conditionalStyles}>
                 <h2>User: {user.name}</h2>
                 <h2>Email: {user.email}</h2>
+                <img src={user.picture}/>
                 <script type="text/javascript">
                     createAccount();
                     getUsersFlights();
@@ -73,7 +86,12 @@ function Profile () {
                 <h2>
                     Flights: {listOfItems}
                 </h2>
-                <img src={user.picture}/>
+                <h2>
+                    <button className="btn" onClick={changeBackground}>
+                        <strong>{background ? "Light Mode" : "Dark Mode"}</strong>
+                    </button>
+                </h2>
+                
             </article>
         )
     )
