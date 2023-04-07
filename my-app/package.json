@@ -8,7 +8,7 @@
     "@emotion/styled": "^11.10.6",
     "@mantine/core": "^6.0.5",
     "@mantine/hooks": "^6.0.5",
-    "@mui/material": "^5.11.15",
+    "@mui/material": "^5.11.16",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -19,12 +19,15 @@
     "helmet": "^6.0.1",
     "jquery": "^3.6.4",
     "knex": "^2.4.2",
+    "moment": "^2.29.4",
     "popper.js": "^1.16.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.10.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
     "sqlite3": "^5.1.4",
     "styled-components": "^5.3.9",
     "web-vitals": "^2.1.4"
@@ -33,7 +36,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start2": "node server",
+    "dev": "nodemon server"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +60,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
+    "nodemon": "^2.0.22",
     "tailwindcss": "^3.3.0"
   }
 }

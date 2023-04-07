@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from "react";
 import axios from 'axios'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const ListEmail = styled.div`
   display: flex;
@@ -71,6 +72,7 @@ function GroupPage() {
     window.onload = createAccount();
 
     return (
+        <div>
         isAuthenticated && (
             <article className="column">
                 <h1> If you don't see the grouping in 30 seconds, refresh the page! </h1>
@@ -89,8 +91,17 @@ function GroupPage() {
                 </ul>
                 <img src={user.picture}/>
             </article>
+            <Link to="/ChatGroup">
+             <button type="button" className="btn btn-outline-success">
+                 View Grouping
+              </button>
+         </Link>
+           
         )
+
+        </div>
     )
+    
 }
 
 
