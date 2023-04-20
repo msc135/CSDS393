@@ -3,6 +3,7 @@ import './Home.css';
 import LoginButton from "../components/LoginButton";
 import LogoutButton from "../components/LogoutButton";
 import FillFormButton from '../components/FillFormButton';
+import ChatroomButton from "../components/ChatroomButton";
 import Profile from "../components/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -18,7 +19,7 @@ function Home() {
         {!error && isLoading && <p>Loading...</p>}
 
         <Profile />
-        <center><LogoutButton /><FillFormButton /></center>
+        <center><LogoutButton /><FillFormButton /><ChatroomButton /></center>
 
       </div>
   )
