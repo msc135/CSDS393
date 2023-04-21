@@ -1,4 +1,9 @@
 let loggedIn = "";
+let flightDay = "";
+let flightHours = "";
+let flightMinutes = "";
+let direction = "";
+let type = "";
 
 const knex = require('knex')({
   client: 'sqlite3',
@@ -51,6 +56,15 @@ exports.flightsPersonal = async (req, res) => {
 
 // Create new flight
 exports.flightCreate = async (req, res) => {
+  flightDay = req.body.flighttime;
+  //flightDay = flightDay.substring(10);
+  flightHours = req.body.flighttime;
+  flightMinutes = flightHours.substring(14, 16);
+  flightHours = flightHours.substring(11,13);
+  flightMinutes = parseInt(flightMinutes) + (parseInt(flightHours)*60);
+  direction = req.body.direction;
+  type = req.body.international;
+
     // Add new flight to database
     knex('flight')
       .insert({ // insert new record, a flight
@@ -72,13 +86,14 @@ exports.flightCreate = async (req, res) => {
 
   // get group for a submitted flight
 exports.groupAll = async (req, res) => {
+  console.log();
     knex('flight')
     .select('email')
-    .whereBetween('flighttime', [
-      knex.raw("ADDTIME(?,'0 2:0:0.00')", ['*insert flight time*']),
-      knex.raw("ADDTIME(?,'0 -2:0:0.00')", ['*insert flight time*']),
-    ])
-    .where({ '*enter incoming or out going data *': true })
+    //.whereBetween('flighttime', '[datetime(flightDay, '+2 hours'), 'datetime(flightDay, -2 hours)'
+      //knex.raw("ADDTIME(?,'+ 2 hours')", 'flightDay'),
+      //knex.raw("ADDTIME(?,'- 2 hours')", 'flightDay'),
+    //)
+    .where('direction', direction)
     .then(userData => {
       // Send books extracted from database in response
       res.json(userData)

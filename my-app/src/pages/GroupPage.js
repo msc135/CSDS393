@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from 'axios'
 import styled from 'styled-components';
 import HomeButton from '../components/HomeButton';
+import jQuery from "jquery";
 
 const ListEmail = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ function GroupPage() {
     
     const { user, isAuthenticated } = useAuth0();
     let [listOfItems, setListOfItems] = useState([]);
+    let [start, setStart] = useState(0);
     const createAccount = async (e) => {
         try {
             const response = await axios.post('http://localhost:4001/login/create', {
@@ -49,7 +51,7 @@ function GroupPage() {
        
         sendEmail();
         axios
-            .get("http://localhost:4001/flights/all", {
+            .get("http://localhost:4001/flights/group", {
                 responseType: "json",
             })
             .then(function (response) {
@@ -64,12 +66,15 @@ function GroupPage() {
     
     }
 
-    if (isAuthenticated){
+    if (isAuthenticated && start == 0){
+        jQuery(createAccount());
         window.localStorage.setItem("currUser", user.email);
         window.localStorage.setItem("currFlights", getUsersFlights());
+        setStart(1);
     }
 
-    window.onload = createAccount();
+    //jQuery(createAccount());
+    //window.onload = createAccount();
 
     return (
         isAuthenticated && (
